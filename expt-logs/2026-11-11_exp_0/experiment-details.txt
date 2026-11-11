@@ -1,0 +1,8 @@
+Experiment C:\Users\zero\OneDrive\Desktop\sagag\AmongUs\expt-logs\2026-11-11_exp_0
+Date: 2026-11-11
+Commit: e4ea002a3617b7d78362e053ab58d37a07abe214
+Experiment args: {'game_config': {'num_players': 7, 'num_impostors': 2, 'num_common_tasks': 1, 'num_short_tasks': 1, 'num_long_tasks': 1, 'discussion_rounds': 3, 'max_num_buttons': 2, 'kill_cooldown': 3, 'max_timesteps': 50}, 'include_human': False, 'test': False, 'personality': False, 'agent_config': {'Impostor': 'LLM', 'Crewmate': 'LLM', 'IMPOSTOR_LLM_CHOICES': ['microsoft/phi-4'], 'CREWMATE_LLM_CHOICES': ['microsoft/phi-4']}, 'UI': False, 'tournament_style': 'random'}
+Path of executable file: C:\Users\zero\OneDrive\Desktop\sagag\AmongUs\utils.py
+Experiment index: 0
+
+Experiment args: {'game_config': {'num_players': 7, 'num_impostors': 2, 'num_common_tasks': 1, 'num_short_tasks': 1, 'num_long_tasks': 1, 'discussion_rounds': 3, 'max_num_buttons': 2, 'kill_cooldown': 3, 'max_timesteps': 50}, 'include_human': False, 'test': False, 'personality': False, 'agent_config': {'Impostor': 'LLM', 'Crewmate': 'LLM', 'IMPOSTOR_LLM_CHOICES': ['microsoft/phi-4'], 'CREWMATE_LLM_CHOICES': ['microsoft/phi-4']}, 'UI': False, 'tournament_style': 'random'}

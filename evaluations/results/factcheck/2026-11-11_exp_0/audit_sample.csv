@@ -1,0 +1,6 @@
+experiment,game,player,identity,kind,subject,room,task,negated,verdict,sentence,rule,extraction_correct,verdict_correct
+2026-11-11_exp_0,2026-11-11_exp_0/Game 1,Player 4: green,Crewmate,self_location,Player 4: green,Admin,,False,true,I moved to Admin after witnessing Player 5 (black) being killed by Player 1 (purple).,self_motion,,
+2026-11-11_exp_0,2026-11-11_exp_0/Game 1,Player 2: lime,Crewmate,other_location,Player 1: purple,Admin,,False,true,I noticed that Player 1: purple was in Admin when Player 5: black was killed.,other_be,,
+2026-11-11_exp_0,2026-11-11_exp_0/Game 1,Player 3: orange,Crewmate,other_location,Player 1: purple,Admin,,False,true,I noticed Player 1 (purple) was in Admin with Player 5 (black) when the kill occurred and then moved to Electrical.,other_be,,
+2026-11-11_exp_0,2026-11-11_exp_0/Game 1,Player 4: green,Crewmate,other_location,Player 1: purple,Admin,,False,true,Player 1 was in Admin at the time of Player 5's murder and then rapidly moved to Electrical.,other_be,,
+2026-11-11_exp_0,2026-11-11_exp_0/Game 1,Player 4: green,Crewmate,other_location,Player 1: purple,Admin,,False,true,"Player 1 was in Admin at the time of Player 5's (black) murder and then quickly moved to Electrical, a sequence that only an Impostor could execute.",other_be,,
