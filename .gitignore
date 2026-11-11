@@ -4,17 +4,11 @@
 # deception-detection
 deception-detection/
 
-# expt-logs
-expt-logs/
-
 # probes/TransformerLens
 linear-probes/TransformerLens/
 linear-probes/data/
 linear-probes/transformers/
 linear-probes/checkpoints/
-
-# evaluations/results
-evaluations/results/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

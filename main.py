@@ -36,26 +36,10 @@ COMMIT_HASH = (
 )
 
 BIG_LIST_OF_MODELS: List[str] = [
-    "anthropic/claude-3.5-sonnet",
-    "anthropic/claude-3-opus",
-    "anthropic/claude-3.7-sonnet:thinking",
-    "anthropic/claude-3.7-sonnet",
-    "openai/o3",
-    "openai/o4-mini-high",
-    "openai/gpt-4o",
-    "deepseek/deepseek-r1",
-    "deepseek/deepseek-chat-v3-0324",
-    "deepseek/deepseek-r1-distill-llama-70b",
-    "google/gemini-2.5-pro-preview-03-25",
-    "google/gemini-2.0-flash-001",
-    "google/gemma-3-4b-it",
-    "qwen/qwen3-235b-a22b",
-    "qwen/qwen-2.5-7b-instruct",
-    "meta-llama/llama-4-maverick",
     "meta-llama/llama-3.3-70b-instruct",
-    "mistralai/mistral-small-3.1-24b-instruct",
-    "x-ai/grok-3-beta",
-    "microsoft/phi-4",
+    "qwen/qwen3-30b-a3b-instruct-2507",
+    "mistralai/mistral-small-3.2-24b-instruct",
+    "microsoft/phi-4"
 ]
 
 ARGS = {
@@ -112,6 +96,8 @@ if __name__ == "__main__":
     parser.add_argument("--crewmate_llm", type=str, default=None, help="Crewmate LLM model.")
     parser.add_argument("--impostor_llm", type=str, default=None, help="Impostor LLM model.")
     parser.add_argument("--streamlit", type=bool, default=False, help="Streamlit.")
+    parser.add_argument("--memory", type=str, default="text", choices=["text", "kg"],
+                        help="Agent memory: 'text' = baseline self-written Condensed Memory, 'kg' = knowledge graph.")
     parser.add_argument("--tournament_style", type=str, default="random", help="random or 1on1.")
     args = parser.parse_args()
     if args.num_games > 1 or args.display_ui == False:
@@ -121,4 +107,5 @@ if __name__ == "__main__":
     if args.impostor_llm:
         ARGS["agent_config"]["IMPOSTOR_LLM_CHOICES"] = [args.impostor_llm]
     ARGS["tournament_style"] = args.tournament_style
+    ARGS["agent_config"]["MEMORY"] = args.memory
     asyncio.run(multiple_games(experiment_name=args.name, num_games=args.num_games))

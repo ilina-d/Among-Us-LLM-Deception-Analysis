@@ -11,6 +11,7 @@ import numpy as np
 import requests
 import asyncio
 from amongagents.agent.neutral_prompts import *
+from amongagents.agent.knowledge_graph import KnowledgeGraph
 
 # Set Flask environment variable to True by default
 if "FLASK" not in os.environ:
@@ -58,6 +59,9 @@ class LLMAgent(Agent):
         self.api_url = "https://openrouter.ai/api/v1/chat/completions"
         self.summarization = "No thought process has been made."
         self.processed_memory = "No memory has been processed."
+        # memory backend: "text" (baseline: the model's own [Condensed Memory]) or "kg" (knowledge graph)
+        self.memory_mode = (agent_config or {}).get("MEMORY", "text")
+        self.kg = KnowledgeGraph(player.name) if self.memory_mode == "kg" else None
         self.chat_history = []
         self.tools = tools
         self.script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -209,11 +213,17 @@ class LLMAgent(Agent):
         # phase = "Meeting phase" if len(available_actions) == 1 else "Task phase"
         phase = "Meeting phase" if len(available_actions) == 1 or all(a.name == "VOTE" for a in available_actions) else "Task phase"
 
+        if self.kg is not None:
+            # knowledge-graph memory replaces the model's self-written [Condensed Memory]
+            self.kg.update(self.player)
+            memory_text = self.kg.render()
+        else:
+            memory_text = self.processed_memory
         messages = [
             {"role": "system", "content": self.system_prompt},
             {
                 "role": "user",
-                "content": f"Summarization: {self.summarization}\n\n{all_info}\n\nMemory: {self.processed_memory}\
+                "content": f"Summarization: {self.summarization}\n\n{all_info}\n\nMemory: {memory_text}\
                     \n\nPhase: {phase}. Return your output.",
             },
         ]
@@ -222,7 +232,7 @@ class LLMAgent(Agent):
         full_prompt = {
             "Summarization": self.summarization,
             "All Info": all_info,
-            "Memory": self.processed_memory,
+            "Memory": memory_text,
             "Phase": phase,
         }
         
